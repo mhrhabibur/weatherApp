@@ -10,29 +10,22 @@ import UIKit
 class HomeViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var CityLabel: UILabel!
-    
     @IBOutlet var weatherCondition: UIImageView!
-    
     @IBOutlet var searchTextField: UITextField!
-    
-    var weatherManager = WeatherManager()
-    
-    var myData: String = ""
-    var weatherID: String = ""
+    @IBOutlet var cityNameLabel: UILabel!
     
 
-    @IBOutlet var cityNameLabel: UILabel!
+    var weatherManager = WeatherManager()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
 
 
     @IBAction func searchButtonTapped(_ sender: UIButton) {
         searchTextField.endEditing(true)
-    
         
     }
     
@@ -40,8 +33,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         searchTextField.endEditing(true)
     }
     
-    
-    
+
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if searchTextField.text == "" || searchTextField.text == nil{
@@ -49,7 +41,6 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             cityNameLabel.text = ""
             
         } else {
-            //cityNameLabel.text = searchTextField.text
             if let city = searchTextField.text {
                 weatherManager.fetchData(cityName: city) { weather, error in
                     if let myWeather = weather {
@@ -67,14 +58,14 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                 }
-                }
             }
-            
-        searchTextField.text = ""
         }
+        
+        searchTextField.text = ""
     }
-    
-   
+}
+
+
         
         
         
